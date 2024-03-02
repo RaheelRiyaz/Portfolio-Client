@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import Home from "./user/pages/Home.jsx";
 import Projects from "./user/pages/Projects.jsx";
+import DemoVideo from "./user/pages/DemoVideo.jsx";
+import Login from "./user/pages/Login.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -18,6 +20,8 @@ const routes = createBrowserRouter([
       { path: "", element: <Navigate to={"home"} /> },
       { path: "home", element: <Home /> },
       { path: "projects", element: <Projects /> },
+      { path: "demo", element: <DemoVideo /> },
+      { path: "login", element: <Login /> },
     ],
   },
 ]);

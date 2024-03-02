@@ -3,6 +3,25 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
+  const routes = [
+    {
+      text: "Home",
+      route: "home",
+    },
+    {
+      text: "Projects",
+      route: "projects",
+    },
+    {
+      text: "Skills",
+      route: "skills",
+    },
+    {
+      text: "Login",
+      route: "login",
+    },
+  ];
+
   useEffect(() => {
     initFlowbite();
   }, []);
@@ -48,55 +67,23 @@ function Navbar() {
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <NavLink
-                to={"home"}
-                className={({ isActive }) =>
-                  `block py-2 px-3 hover:text-blue-600 cursor-pointer ${
-                    isActive ? "text-blue-500" : "text-gray-200"
-                  }`
-                }
-                aria-current="page"
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={"projects"}
-                className={({ isActive }) =>
-                  `block py-2 px-3 hover:text-blue-600 cursor-pointer ${
-                    isActive ? "text-blue-500" : "text-gray-200"
-                  }`
-                }
-              >
-                Projects
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-              to={"skills"}
-                className={({ isActive }) =>
-                  `block py-2 px-3 hover:text-blue-600 cursor-pointer ${
-                    isActive ? "text-blue-500" : "text-gray-200"
-                  }`
-                }
-              >
-                Skills
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-              to={'resume'}
-                className={({ isActive }) =>
-                  `block py-2 px-3 hover:text-blue-600 cursor-pointer ${
-                    isActive ? "text-blue-500" : "text-gray-200"
-                  }`
-                }
-              >
-                Resume
-              </NavLink>
-            </li>
+            {routes.map((route, _) => {
+              return (
+                <li key={_}>
+                  <NavLink
+                    to={route.route}
+                    className={({ isActive }) =>
+                      `block py-2 px-3 hover:text-blue-600 cursor-pointer ${
+                        isActive ? "text-blue-500" : "text-gray-200"
+                      }`
+                    }
+                    aria-current="page"
+                  >
+                    {route.text}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

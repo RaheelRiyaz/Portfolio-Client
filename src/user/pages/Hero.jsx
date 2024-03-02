@@ -1,4 +1,20 @@
+import { useEffect, useState } from "react";
+import { BASE_SERVICE } from "../../services/baseService";
+import { HttpStatusCode } from "axios";
+import { environment } from "../../../environments/environment.development";
+import { NavLink } from "react-router-dom";
+
 function Hero() {
+  const [resume, setResume] = useState(null);
+
+  useEffect(() => {
+    BASE_SERVICE.Fetch("resume").then((response) => {
+      if (response.status === HttpStatusCode.Ok) {
+        setResume(response.data.result);
+      }
+    });
+  }, []);
+
   return (
     <section className="text-gray-600 body-font">
       <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col">
@@ -14,12 +30,16 @@ function Hero() {
             accessible, and that meet the user&apos;s needs.
           </p>
           <div className="flex justify-start">
-            <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded-3xl text-lg">
+            <NavLink to={'/projects'} className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded-3xl text-lg">
               Projects
-            </button>
-            <button className="ml-4 flex justify-center items-center gap-2 text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded-3xl text-lg">
+            </NavLink>
+            <a
+              href={environment.IMAGE_BASE_PATH + resume?.filePath}
+              target="_blank"
+              className="ml-4 flex justify-center items-center gap-2 text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded-3xl text-lg"
+            >
               Resume <i className="fa-solid fa-download"></i>
-            </button>
+            </a>
           </div>
         </div>
       </div>
