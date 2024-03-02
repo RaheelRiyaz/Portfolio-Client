@@ -30,13 +30,13 @@ function Navbar() {
     <nav className="bg-gray-600 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <NavLink
-          href="https://flowbite.com/"
+         to={'home'}
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8"
-            alt="Flowbite Logo"
+            src="src/assets/icons8-r-64.png"
+            className="h-8 hover:rotate-3"
+            alt="Logo"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-200">
             Rahil Riyaz

@@ -11,6 +11,7 @@ import Home from "./user/pages/Home.jsx";
 import Projects from "./user/pages/Projects.jsx";
 import DemoVideo from "./user/pages/DemoVideo.jsx";
 import Login from "./user/pages/Login.jsx";
+import SkillSet from "./user/pages/SkillSet.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const routes = createBrowserRouter([
       { path: "home", element: <Home /> },
       { path: "projects", element: <Projects /> },
       { path: "demo", element: <DemoVideo /> },
+      { path: "skills", element: <SkillSet /> },
       { path: "login", element: <Login /> },
     ],
   },

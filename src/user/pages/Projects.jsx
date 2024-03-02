@@ -7,8 +7,8 @@ import Skelton from "../components/Skelton";
 
 function Projects() {
   const [loading, setLoading] = useState(true);
-
   const [projects, setProjects] = useState(null);
+
   useEffect(() => {
     BASE_SERVICE.Fetch("projects")
       .then((response) => {
