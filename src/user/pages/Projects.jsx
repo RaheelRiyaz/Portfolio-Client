@@ -21,14 +21,14 @@ function Projects() {
   }, []);
 
   return (
-    <section className="text-gray-600 body-font mt-10">
+    <section className="text-gray-600 body-font mt-10 md:ml-8">
       <div className="p-5">
         <Heading title="Projects" />
       </div>
       <div className="container">
         <div className="flex flex-wrap justify-start items-center mt-4">
           {loading
-            ? [1, 2, 3].map((_, i) => {
+            ? Array(6).fill(0).map((_, i) => {
                 return <Skelton key={i} />;
               })
             : projects?.map((_, i) => {

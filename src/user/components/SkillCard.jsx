@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 
-function SkillCard() {
+import { environment } from "../../../environments/environment.development";
+
+function SkillCard({ skill }) {
   return (
-    <div className="flex justify-start items-center gap-3 text-white font-bold text-xl h-16 md:w-[300px] w-[150px]">
+    <div className="flex justify-start items-center gap-3 text-white font-bold text-sm md:text-xl h-16 md:w-[300px] w-[150px]">
       <img
-      className="h-7 w-7 object-cover rounded-full"
-        src="https://yt3.googleusercontent.com/y4J_Fs5ksRlxx6_LzT1VKxVqH_T8Vyn_RN_YYgLJhuMzBS5qxTgm7NlEcMkQd3hgCpfWtYcEUg=s900-c-k-c0x00ffffff-no-rj"
+        className="h-7 w-7 object-cover rounded-full"
+        src={environment.IMAGE_BASE_PATH + skill?.icon}
         alt="icon"
       />
-      <h1>Angular</h1>
+      <h1>{skill?.name}</h1>
     </div>
   );
 }
