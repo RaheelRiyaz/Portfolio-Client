@@ -17,6 +17,10 @@ function Navbar() {
       route: "skills",
     },
     {
+      text: "Experiences",
+      route: "experiences",
+    },
+    {
       text: "Login",
       route: "login",
     },
@@ -27,10 +31,10 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-gray-600 dark:bg-gray-900">
+    <nav className="bg-gray-800 dark:bg-gray-900 shadow-lg">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <NavLink
-         to={'home'}
+          to={"home"}
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img

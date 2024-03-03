@@ -1,31 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
-import Home from "./user/pages/Home.jsx";
-import Projects from "./user/pages/Projects.jsx";
-import DemoVideo from "./user/pages/DemoVideo.jsx";
-import Login from "./user/pages/Login.jsx";
-import SkillSet from "./user/pages/SkillSet.jsx";
-
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { UserRoutes } from "./user/UserRouting.jsx";
+import { AdminRoutes } from "./admin/AdminRouting.jsx";
 const routes = createBrowserRouter([
-  {
-    path: "",
-    element: <App />,
-    children: [
-      { path: "", element: <Navigate to={"home"} /> },
-      { path: "home", element: <Home /> },
-      { path: "projects", element: <Projects /> },
-      { path: "demo", element: <DemoVideo /> },
-      { path: "skills", element: <SkillSet /> },
-      { path: "login", element: <Login /> },
-    ],
-  },
+  // User Routing
+  { ...UserRoutes },
+  // User Routing
+
+  // Admin Routing
+  { ...AdminRoutes },
+  // Admin Routing
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

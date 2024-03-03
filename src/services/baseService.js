@@ -1,39 +1,47 @@
 import axios from "axios";
 import { environment } from "../../environments/environment.development";
-const base_url = environment.BASE_URL;
+import GetToken from "../utilis/AppAuth";
 
 class BaseService {
-  // Genereic Function for fetching data
+  // Axios intance
+  Axios = axios.create({
+    baseURL: environment.BASE_URL,
+    headers: {
+      Authorization: `Bearer ${GetToken()}`,
+    },
+  });
+
+  // Generic Function for fetching data
   Fetch(url) {
     try {
-      return axios.get(base_url + url);
+      return this.Axios.get(url);
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  //   Genereic function for posting data
+  //   Generic function for posting data
   Post(url, model) {
     try {
-      return axios.post(base_url + url, model);
+      return this.Axios.post(url, model);
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  //   Genereic function for deleting data
+  //   Generic function for deleting data
   Delete(url) {
     try {
-      return axios.delete(base_url + url);
+      return this.Axios.delete(+ url);
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  //   Genereic function for updating data
+  //   Generic function for updating data
   Update(url, model) {
     try {
-      return axios.put(base_url + url, model);
+      return this.Axios.put(url, model);
     } catch (error) {
       throw new Error(error);
     }
