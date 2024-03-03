@@ -1,8 +1,27 @@
 import { initFlowbite } from "flowbite";
 import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 function Header() {
+  const routes = [
+    {
+      text: "Dashboard",
+      route: "/admin",
+    },
+    {
+      text: "Projects",
+      route: "/admin/projects",
+    },
+    {
+      text: "Skills",
+      route: "/admin/skills",
+    },
+    {
+      text: "Experience",
+      route: "/admin/experience",
+    },
+  ];
+
   useEffect(() => {
     initFlowbite();
   }, []);
@@ -39,41 +58,18 @@ function Header() {
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
-            <li>
-              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span className="ms-3">Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span className="flex-1 ms-3 whitespace-nowrap">Projects</span>
-              </a>
-            </li>
-            <li>
-              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
-            <li>
-              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
-              </a>
-            </li>
-            <li>
-              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span className="flex-1 ms-3 whitespace-nowrap">Products</span>
-              </a>
-            </li>
-            <li>
-              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
-              </a>
-            </li>
-            <li>
-              <a className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-              </a>
-            </li>
+            {routes.map((_, i) => {
+              return (
+                <li key={i}>
+                  <NavLink
+                    to={_.route}
+                    className="cursor-pointer flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <span className="ms-3">{_.text}</span>
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </aside>
