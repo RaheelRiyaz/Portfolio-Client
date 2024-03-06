@@ -56,6 +56,14 @@ function AddProject() {
   function handleVideoFile(e) {
     clearErrors("video");
 
+    if (!e.target.files[0]) {
+      setError("video", {
+        type: "manual",
+        message: "Please select a file",
+      });
+      return;
+    }
+
     if (e.target.files[0] && !e.target.files[0].type.includes("video")) {
       setError("video", {
         type: "manual",
@@ -68,6 +76,14 @@ function AddProject() {
 
   function handleFile(e) {
     clearErrors("image");
+
+    if (!e.target.files[0]) {
+      setError("image", {
+        type: "manual",
+        message: "Please select a file",
+      });
+      return;
+    }
 
     if (e.target.files[0] && !e.target.files[0].type.includes("image")) {
       setError("image", {

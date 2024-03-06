@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { context } from "../context/Context";
 import { BASE_SERVICE } from "../../services/baseService";
 import { HttpStatusCode } from "axios";
@@ -9,7 +9,6 @@ function Techs() {
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const navigateTo = useNavigate();
 
   function handleForm(e) {
     e.preventDefault();
@@ -26,7 +25,6 @@ function Techs() {
             alert("");
             return;
           }
-          navigateTo("/admin/projects");
         }
       })
       .finally(() => setSubmitting(false));
