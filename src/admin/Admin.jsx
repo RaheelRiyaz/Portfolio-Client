@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Header from "./components/Header";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GetToken from "../utilis/AppAuth";
-
+import { context } from "./context/Context";
 function Admin() {
+  const [techs, setTechs] = useState([]);
   const navigateTo = useNavigate();
+
   useEffect(() => {
     if (!GetToken()) {
       navigateTo("/login");
@@ -13,9 +15,14 @@ function Admin() {
   }, [navigateTo]);
 
   return (
-    <div>
+    <context.Provider
+      value={{
+        techs,
+        setTechs,
+      }}
+    >
       <Header />
-    </div>
+    </context.Provider>
   );
 }
 

@@ -18,7 +18,7 @@ function Login() {
     BASE_SERVICE.Post("user/login", data)
       .then((response) => {
         if (response.status === HttpStatusCode.Ok) {
-          localStorage.setItem(
+          sessionStorage.setItem(
             "Portfolio-Token",
             response?.data?.result?.token
           );

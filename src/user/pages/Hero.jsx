@@ -30,7 +30,10 @@ function Hero() {
             accessible, and that meet the user&apos;s needs.
           </p>
           <div className="flex justify-start">
-            <NavLink to={'/projects'} className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded-3xl text-lg">
+            <NavLink
+              to={"/projects"}
+              className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded-3xl text-lg"
+            >
               Projects
             </NavLink>
             <a

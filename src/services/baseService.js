@@ -32,7 +32,7 @@ class BaseService {
   //   Generic function for deleting data
   Delete(url) {
     try {
-      return this.Axios.delete(+ url);
+      return this.Axios.delete(url);
     } catch (error) {
       throw new Error(error);
     }

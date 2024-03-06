@@ -18,7 +18,7 @@ function Header() {
     },
     {
       text: "Experience",
-      route: "/admin/experience",
+      route: "/admin/experiences",
     },
   ];
 
