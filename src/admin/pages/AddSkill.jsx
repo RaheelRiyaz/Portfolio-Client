@@ -20,12 +20,13 @@ function AddSkill() {
   function handleChange(e) {
     setFile(e.target.files[0]);
   }
-
   function handleForm(data) {
     setSubmitting(true);
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("icon", file);
+
     BASE_SERVICE.Post("skills", formData)
       .then((res) => {
         if (res.status === HttpStatusCode.Ok)

@@ -6,6 +6,8 @@ import Spinner from "../components/Spinner";
 import { environment } from "../../../environments/environment.development";
 import { context } from "../context/Context";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 function Projects() {
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
@@ -31,7 +33,10 @@ function Projects() {
   else
     return (
       <div className="relative overflow-x-auto">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <NavLink to={"add"} className="bg-gray-200 p-2 rounded-lg mt-2">
+          Add Project +
+        </NavLink>
+        <table className="w-full text-sm text-left rtl:text-right mt-4 text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th>Avatar</th>

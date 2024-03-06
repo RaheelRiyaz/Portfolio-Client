@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 /* eslint-disable react/prop-types */
 function TextArea({ placeHolder, ...props }, ref) {
@@ -14,4 +14,4 @@ function TextArea({ placeHolder, ...props }, ref) {
   );
 }
 
-export const TextAreaEl = forwardRef(TextArea);
+export const TextAreaEl = memo(forwardRef(TextArea));

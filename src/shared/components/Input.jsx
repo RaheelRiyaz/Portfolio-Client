@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 /* eslint-disable react/prop-types */
 function Input({ type = "text", placeHolder, ...props }, ref) {
@@ -14,4 +14,4 @@ function Input({ type = "text", placeHolder, ...props }, ref) {
   );
 }
 
-export const InputEl = forwardRef(Input);
+export const InputEl = memo(forwardRef(Input));

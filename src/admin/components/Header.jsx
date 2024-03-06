@@ -20,6 +20,10 @@ function Header() {
       text: "Experience",
       route: "/admin/experiences",
     },
+    {
+      text: "Resume",
+      route: "/admin/resume",
+    },
   ];
 
   useEffect(() => {

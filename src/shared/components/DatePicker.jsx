@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 /* eslint-disable react/prop-types */
 function DatePicker({ placeHolder, ...props },ref) {
@@ -26,4 +26,4 @@ function DatePicker({ placeHolder, ...props },ref) {
   );
 }
 
-export const DatePickerEl = forwardRef(DatePicker);
+export const DatePickerEl = memo(forwardRef(DatePicker));
