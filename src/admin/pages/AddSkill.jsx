@@ -2,15 +2,30 @@ import { HttpStatusCode } from "axios";
 import { BASE_SERVICE } from "../../services/baseService";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { InputEl } from "../../shared/components/Input";
+import { FileEl } from "../../shared/components/File";
+import { useForm } from "react-hook-form";
 
 function AddSkill() {
   const [submitting, setSubmitting] = useState(false);
+  const [file, setFile] = useState(null);
   const navigateTo = useNavigate();
 
-  function handleForm(e) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function handleChange(e) {
+    setFile(e.target.files[0]);
+  }
+
+  function handleForm(data) {
     setSubmitting(true);
-    e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("icon", file);
     BASE_SERVICE.Post("skills", formData)
       .then((res) => {
         if (res.status === HttpStatusCode.Ok)
@@ -20,41 +35,21 @@ function AddSkill() {
   }
   return (
     <div className="border border-white rounded-lg p-3 w-[30rem] m-auto mt-3">
-      <form className="mx-auto" onSubmit={(e) => handleForm(e)}>
-        <div className="mb-5">
-          <label
-            htmlFor="skill"
-            className="block mb-2 text-sm font-medium text-white dark:text-white"
-          >
-            Skill Name
-          </label>
-          <input
-            type="text"
-            id="skill"
-            name="name"
-            placeholder="Skill"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            required
-          />
-        </div>
-        <div className="mb-5">
-          <label
-            htmlFor="icon"
-            className="block mb-2 text-sm font-medium text-white dark:text-white"
-          >
-            Icon
-          </label>
-          <input
-            type="file"
-            id="icon"
-            name="icon"
-            className="shadow-sm bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            required
-          />
-        </div>
+      <form className="mx-auto" onSubmit={handleSubmit(handleForm)}>
+        <InputEl
+          placeHolder="SKill Name"
+          {...register("name", {
+            required: {
+              value: true,
+              message: "Skill is required",
+            },
+          })}
+        />
+        {errors.name && <p>{errors.name.message}</p>}
+        <FileEl label="Icon" classes="mt-5" handler={handleChange} />
         {submitting ? (
           <button
-          disabled
+            disabled
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Adding....
@@ -62,11 +57,15 @@ function AddSkill() {
         ) : (
           <button
             type="submit"
+            disabled={!file}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Add new skill
           </button>
         )}
+        <p className="text-red-500">
+          {!file && submitting && "Please Select a icon"}
+        </p>
       </form>
     </div>
   );
